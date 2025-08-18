@@ -86,14 +86,14 @@ int main()
 			if (c.ram > 16) c.price *= 1.1;
 		});
 
-	cout << "\nПісля збільшення ціни (RAM > 16):" << endl;
+	cout << "\nAfter the price increase (RAM > 16):" << endl;
 	printVector(computers);
 
 
 	sort(computers.begin(), computers.end(),
 		[](const Computer& a, const Computer& b) { return a.price < b.price; });
 
-	cout << "Сортування за зростанням ціни:" << endl;
+	cout << "Sorting by ascending price:" << endl;
 	printVector(computers);
 
 
@@ -101,7 +101,7 @@ int main()
 	sort(computers.begin(), computers.end(),
 		[](const Computer& a, const Computer& b) { return a.frequancy > b.frequancy; });
 
-	cout << "Сортування за спаданням ціни:" << endl;
+	cout << "Sorting by descending price:" << endl;
 	printVector(computers);
 
 	return 0;
