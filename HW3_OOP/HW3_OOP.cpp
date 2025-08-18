@@ -25,4 +25,10 @@ public:
 	}
 };
 
-
+void printVector(const vector<Computer>& comps) {
+	cout << "=========================" << endl;
+	for (const auto& c : comps) {
+		c.print();
+	}
+	cout << "=========================" << endl;
+}
