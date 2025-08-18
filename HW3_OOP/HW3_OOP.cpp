@@ -17,4 +17,12 @@ public:
 		: name(n), frequancy(f), ram(r), dvd(d), price(p) {
 	}
 	~Computer() {}
+
+	void print() const {
+		cout << "Name: " << name << ", Frequency: " << frequancy 
+			 << " GHz, RAM: " << ram << " GB, DVD: " << (dvd ? "Yes" : "No") 
+			<< ", Price: $" << price << endl;
+	}
 };
+
+
