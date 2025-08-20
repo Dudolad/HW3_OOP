@@ -24,6 +24,15 @@ public:
 			 << " GHz, RAM: " << ram << " GB, DVD: " << (dvd ? "Yes" : "No") 
 			<< ", Price: $" << price << endl;
 	}
+
+	string getName() const { return name; }
+	double getFrequancy() const { return frequancy; }
+	int getRam() const { return ram; }
+	bool hasDvd() const { return dvd; }
+	double getPrice() const { return price; }
+
+
+	void setPrice(double newPrice) { price = newPrice; }
 };
 
 void printVector(const vector<Computer>& comps) {
@@ -50,7 +59,7 @@ int main()
 
 	string searchName = "Dell";
 	auto it = find_if(computers.begin(), computers.end(),
-		[&](const Computer& c) { return c.name == searchName; });
+		[&](const Computer& c) { return c.getName() == searchName; });
 
 	if (it != computers.end()) {
 		cout << "Computer found by name \"" << searchName << "\":" << endl;
@@ -64,7 +73,7 @@ int main()
 	auto minIt = min_element(
 		computers.begin(),
 		computers.end(),
-		[](const Computer& a, const Computer& b) { return a.frequancy < b.frequancy; });
+		[](const Computer& a, const Computer& b) { return a.getFrequancy() < b.getFrequancy(); });
 
 		if (minIt != computers.end())
 		{
@@ -77,14 +86,14 @@ int main()
 
 
 	int countDVD = count_if(computers.begin(), computers.end(),
-		[](const Computer& c) { return c.dvd; });
+		[](const Computer& c) { return c.hasDvd(); });
 
 	cout << "Number of computers with DVD: " << countDVD << endl;
 
 
 	for_each(computers.begin(), computers.end(),
 		[](Computer& c) {
-			if (c.ram > 16) c.price *= 1.1;
+			if (c.getRam() > 16) c.setPrice(c.getPrice() * 1.1);
 		});
 
 	cout << "\nAfter the price increase (RAM > 16):" << endl;
@@ -92,7 +101,7 @@ int main()
 
 
 	sort(computers.begin(), computers.end(),
-		[](const Computer& a, const Computer& b) { return a.price < b.price; });
+		[](const Computer& a, const Computer& b) { return a.getPrice() < b.getPrice(); });
 
 	cout << "Sorting by ascending price:" << endl;
 	printVector(computers);
@@ -100,7 +109,7 @@ int main()
 
 
 	sort(computers.begin(), computers.end(),
-		[](const Computer& a, const Computer& b) { return a.frequancy > b.frequancy; });
+		[](const Computer& a, const Computer& b) { return a.getFrequancy() > b.getFrequancy(); });
 
 	cout << "Sorting by descending price:" << endl;
 	printVector(computers);
